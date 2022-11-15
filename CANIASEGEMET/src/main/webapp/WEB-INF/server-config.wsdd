@@ -1,0 +1,109 @@
+<ns1:deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" xmlns:ns1="http://xml.apache.org/axis/wsdd/">
+ <ns1:globalConfiguration>
+  <ns1:parameter name="sendMultiRefs" value="true"/>
+  <ns1:parameter name="disablePrettyXML" value="true"/>
+  <ns1:parameter name="adminPassword" value="admin"/>
+  <ns1:parameter name="attachments.Directory" value="C:\Users\TUNAY.TUNA\eclipse-workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\CANIASEGEMET\WEB-INF\attachments"/>
+  <ns1:parameter name="dotNetSoapEncFix" value="true"/>
+  <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <ns1:parameter name="sendXMLDeclaration" value="true"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:requestFlow>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="session"/>
+   </ns1:handler>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="request"/>
+    <ns1:parameter name="extension" value=".jwr"/>
+   </ns1:handler>
+  </ns1:requestFlow>
+ </ns1:globalConfiguration>
+ <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="Hesap" provider="java:RPC" style="wrapped" use="literal">
+  <ns2:operation name="main" qname="ns1:main" soapAction="" xmlns:ns1="http://canias" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+   <ns2:parameter qname="ns1:args" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns2:operation>
+  <ns1:operation name="anlamliBasamak" qname="ns2:anlamliBasamak" returnQName="ns2:anlamliBasamakReturn" returnType="xsd:string" soapAction="" xmlns:ns2="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns2:d" type="xsd:double"/>
+  </ns1:operation>
+  <ns1:operation name="REFBEL" qname="ns3:REFBEL" returnQName="ns3:REFBELReturn" returnType="xsd:double" soapAction="" xmlns:ns3="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns3:bolen" type="xsd:double"/>
+  </ns1:operation>
+  <ns1:operation name="OLCHATA" qname="ns4:OLCHATA" returnQName="ns4:OLCHATAReturn" returnType="xsd:double" soapAction="" xmlns:ns4="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns4:bolen" type="xsd:double"/>
+  </ns1:operation>
+  <ns1:operation name="BIRLESHATA" qname="ns5:BIRLESHATA" returnQName="ns5:BIRLESHATAReturn" returnType="xsd:double" soapAction="" xmlns:ns5="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns5:bolen" type="xsd:double"/>
+  </ns1:operation>
+  <ns1:operation name="REFKAYMA" qname="ns6:REFKAYMA" returnQName="ns6:REFKAYMAReturn" returnType="xsd:double" soapAction="" xmlns:ns6="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns6:bolen" type="xsd:double"/>
+  </ns1:operation>
+  <ns1:operation name="TEKRAR" qname="ns7:TEKRAR" returnQName="ns7:TEKRARReturn" returnType="xsd:double" soapAction="" xmlns:ns7="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns7:bolen" type="xsd:double"/>
+  </ns1:operation>
+  <ns1:operation name="SICFARKI" qname="ns8:SICFARKI" returnQName="ns8:SICFARKIReturn" returnType="xsd:double" soapAction="" xmlns:ns8="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns8:bolen" type="xsd:double"/>
+  </ns1:operation>
+  <ns1:operation name="SICFARKITESTREF" qname="ns9:SICFARKITESTREF" returnQName="ns9:SICFARKITESTREFReturn" returnType="xsd:double" soapAction="" xmlns:ns9="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns9:bolen" type="xsd:double"/>
+  </ns1:operation>
+  <ns1:operation name="TESTSIFIR" qname="ns10:TESTSIFIR" returnQName="ns10:TESTSIFIRReturn" returnType="xsd:double" soapAction="" xmlns:ns10="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns10:bolen" type="xsd:double"/>
+  </ns1:operation>
+  <ns1:operation name="TESTOKUHATA" qname="ns11:TESTOKUHATA" returnQName="ns11:TESTOKUHATAReturn" returnType="xsd:double" soapAction="" xmlns:ns11="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns11:bolen" type="xsd:double"/>
+  </ns1:operation>
+  <ns1:operation name="TVARYANS" qname="ns12:TVARYANS" returnQName="ns12:TVARYANSReturn" returnType="xsd:double" soapAction="" xmlns:ns12="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns12:degerler" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="genisHesap" qname="ns13:genisHesap" returnQName="ns13:genisHesapReturn" returnType="ns13:GenisHesap" soapAction="" xmlns:ns13="http://canias">
+   <ns1:parameter qname="ns13:obhtype" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns13:obhno" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="dagilim" qname="ns14:dagilim" returnQName="ns14:dagilimReturn" returnType="xsd:double" soapAction="" xmlns:ns14="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns14:dagilimname" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="basamakSayisi" qname="ns15:basamakSayisi" returnQName="ns15:basamakSayisiReturn" returnType="xsd:int" soapAction="" xmlns:ns15="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns15:sayi" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="OLCHATA dagilim REFKAYMA SICFARKITESTREF main BIRLESHATA REFBEL TESTOKUHATA TEKRAR anlamliBasamak TESTSIFIR TVARYANS genisHesap basamakSayisi SICFARKI"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="Hesap"/>
+  <ns1:parameter name="className" value="canias.Hesap"/>
+  <ns1:parameter name="wsdlServicePort" value="Hesap"/>
+  <ns1:parameter name="schemaQualified" value="http://canias"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://canias"/>
+  <ns1:parameter name="wsdlServiceElement" value="HesapService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns16:GenisHesap" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:canias.GenisHesap" xmlns:ns16="http://canias"/>
+ </ns1:service>
+ <ns1:service name="Version" provider="java:RPC">
+  <ns1:parameter name="allowedMethods" value="getVersion"/>
+  <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:transport name="http">
+  <ns1:requestFlow>
+   <ns1:handler type="URLMapper"/>
+   <ns1:handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </ns1:requestFlow>
+  <ns1:parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <ns1:parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </ns1:transport>
+ <ns1:transport name="local">
+  <ns1:responseFlow>
+   <ns1:handler type="LocalResponder"/>
+  </ns1:responseFlow>
+ </ns1:transport>
+</ns1:deployment>

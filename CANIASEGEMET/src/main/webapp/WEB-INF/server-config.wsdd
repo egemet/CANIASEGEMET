@@ -32,50 +32,63 @@
   <ns2:operation name="main" qname="ns1:main" soapAction="" xmlns:ns1="http://canias" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
    <ns2:parameter qname="ns1:args" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns2:operation>
-  <ns1:operation name="anlamliBasamak" qname="ns2:anlamliBasamak" returnQName="ns2:anlamliBasamakReturn" returnType="xsd:string" soapAction="" xmlns:ns2="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns2:d" type="xsd:double"/>
+  <ns1:operation name="varyans" qname="ns2:varyans" returnQName="ns2:varyansReturn" returnType="xsd:double" soapAction="" xmlns:ns2="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns2:x" type="xsd:string"/>
   </ns1:operation>
-  <ns1:operation name="REFBEL" qname="ns3:REFBEL" returnQName="ns3:REFBELReturn" returnType="xsd:double" soapAction="" xmlns:ns3="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns3:bolen" type="xsd:double"/>
+  <ns1:operation name="standartSapma" qname="ns3:standartSapma" returnQName="ns3:standartSapmaReturn" returnType="xsd:double" soapAction="" xmlns:ns3="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns3:x" type="xsd:string"/>
   </ns1:operation>
-  <ns1:operation name="OLCHATA" qname="ns4:OLCHATA" returnQName="ns4:OLCHATAReturn" returnType="xsd:double" soapAction="" xmlns:ns4="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns4:bolen" type="xsd:double"/>
+  <ns1:operation name="pearsonKorelasyon" qname="ns4:pearsonKorelasyon" returnQName="ns4:pearsonKorelasyonReturn" returnType="xsd:double" soapAction="" xmlns:ns4="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns4:obhtype" type="xsd:string"/>
+   <ns1:parameter qname="ns4:obhno" type="xsd:string"/>
   </ns1:operation>
-  <ns1:operation name="BIRLESHATA" qname="ns5:BIRLESHATA" returnQName="ns5:BIRLESHATAReturn" returnType="xsd:double" soapAction="" xmlns:ns5="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns5:bolen" type="xsd:double"/>
+  <ns1:operation name="anlamliBasamak" qname="ns5:anlamliBasamak" returnQName="ns5:anlamliBasamakReturn" returnType="xsd:string" soapAction="" xmlns:ns5="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns5:d" type="xsd:double"/>
   </ns1:operation>
-  <ns1:operation name="REFKAYMA" qname="ns6:REFKAYMA" returnQName="ns6:REFKAYMAReturn" returnType="xsd:double" soapAction="" xmlns:ns6="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ns1:operation name="REFBEL" qname="ns6:REFBEL" returnQName="ns6:REFBELReturn" returnType="xsd:double" soapAction="" xmlns:ns6="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
    <ns1:parameter qname="ns6:bolen" type="xsd:double"/>
   </ns1:operation>
-  <ns1:operation name="TEKRAR" qname="ns7:TEKRAR" returnQName="ns7:TEKRARReturn" returnType="xsd:double" soapAction="" xmlns:ns7="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ns1:operation name="OLCHATA" qname="ns7:OLCHATA" returnQName="ns7:OLCHATAReturn" returnType="xsd:double" soapAction="" xmlns:ns7="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
    <ns1:parameter qname="ns7:bolen" type="xsd:double"/>
   </ns1:operation>
-  <ns1:operation name="SICFARKI" qname="ns8:SICFARKI" returnQName="ns8:SICFARKIReturn" returnType="xsd:double" soapAction="" xmlns:ns8="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ns1:operation name="BIRLESHATA" qname="ns8:BIRLESHATA" returnQName="ns8:BIRLESHATAReturn" returnType="xsd:double" soapAction="" xmlns:ns8="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
    <ns1:parameter qname="ns8:bolen" type="xsd:double"/>
   </ns1:operation>
-  <ns1:operation name="SICFARKITESTREF" qname="ns9:SICFARKITESTREF" returnQName="ns9:SICFARKITESTREFReturn" returnType="xsd:double" soapAction="" xmlns:ns9="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ns1:operation name="REFKAYMA" qname="ns9:REFKAYMA" returnQName="ns9:REFKAYMAReturn" returnType="xsd:double" soapAction="" xmlns:ns9="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
    <ns1:parameter qname="ns9:bolen" type="xsd:double"/>
   </ns1:operation>
-  <ns1:operation name="TESTSIFIR" qname="ns10:TESTSIFIR" returnQName="ns10:TESTSIFIRReturn" returnType="xsd:double" soapAction="" xmlns:ns10="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ns1:operation name="TEKRAR" qname="ns10:TEKRAR" returnQName="ns10:TEKRARReturn" returnType="xsd:double" soapAction="" xmlns:ns10="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
    <ns1:parameter qname="ns10:bolen" type="xsd:double"/>
   </ns1:operation>
-  <ns1:operation name="TESTOKUHATA" qname="ns11:TESTOKUHATA" returnQName="ns11:TESTOKUHATAReturn" returnType="xsd:double" soapAction="" xmlns:ns11="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ns1:operation name="SICFARKI" qname="ns11:SICFARKI" returnQName="ns11:SICFARKIReturn" returnType="xsd:double" soapAction="" xmlns:ns11="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
    <ns1:parameter qname="ns11:bolen" type="xsd:double"/>
+   <ns1:parameter qname="ns11:calismaaraligi" type="xsd:double"/>
   </ns1:operation>
-  <ns1:operation name="TVARYANS" qname="ns12:TVARYANS" returnQName="ns12:TVARYANSReturn" returnType="xsd:double" soapAction="" xmlns:ns12="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns12:degerler" type="xsd:string"/>
+  <ns1:operation name="SICFARKITESTREF" qname="ns12:SICFARKITESTREF" returnQName="ns12:SICFARKITESTREFReturn" returnType="xsd:double" soapAction="" xmlns:ns12="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns12:bolen" type="xsd:double"/>
+   <ns1:parameter qname="ns12:calismaaraligi" type="xsd:double"/>
   </ns1:operation>
-  <ns1:operation name="genisHesap" qname="ns13:genisHesap" returnQName="ns13:genisHesapReturn" returnType="ns13:GenisHesap" soapAction="" xmlns:ns13="http://canias">
-   <ns1:parameter qname="ns13:obhtype" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns13:obhno" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="TESTSIFIR" qname="ns13:TESTSIFIR" returnQName="ns13:TESTSIFIRReturn" returnType="xsd:double" soapAction="" xmlns:ns13="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns13:bolen" type="xsd:double"/>
   </ns1:operation>
-  <ns1:operation name="dagilim" qname="ns14:dagilim" returnQName="ns14:dagilimReturn" returnType="xsd:double" soapAction="" xmlns:ns14="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns14:dagilimname" type="xsd:string"/>
+  <ns1:operation name="TESTOKUHATA" qname="ns14:TESTOKUHATA" returnQName="ns14:TESTOKUHATAReturn" returnType="xsd:double" soapAction="" xmlns:ns14="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns14:bolen" type="xsd:double"/>
   </ns1:operation>
-  <ns1:operation name="basamakSayisi" qname="ns15:basamakSayisi" returnQName="ns15:basamakSayisiReturn" returnType="xsd:int" soapAction="" xmlns:ns15="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns15:sayi" type="xsd:int"/>
+  <ns1:operation name="TVARYANS" qname="ns15:TVARYANS" returnQName="ns15:TVARYANSReturn" returnType="xsd:double" soapAction="" xmlns:ns15="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns15:degerler" type="xsd:string"/>
   </ns1:operation>
-  <ns1:parameter name="allowedMethods" value="OLCHATA dagilim REFKAYMA SICFARKITESTREF main BIRLESHATA REFBEL TESTOKUHATA TEKRAR anlamliBasamak TESTSIFIR TVARYANS genisHesap basamakSayisi SICFARKI"/>
+  <ns1:operation name="genisHesap" qname="ns16:genisHesap" returnQName="ns16:genisHesapReturn" returnType="ns16:GenisHesap" soapAction="" xmlns:ns16="http://canias">
+   <ns1:parameter qname="ns16:obhtype" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns16:obhno" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns16:calismaaraligi" type="xsd:double" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="dagilim" qname="ns17:dagilim" returnQName="ns17:dagilimReturn" returnType="xsd:double" soapAction="" xmlns:ns17="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns17:dagilimname" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="basamakSayisi" qname="ns18:basamakSayisi" returnQName="ns18:basamakSayisiReturn" returnType="xsd:int" soapAction="" xmlns:ns18="http://canias" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns18:sayi" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="OLCHATA dagilim REFKAYMA SICFARKITESTREF main BIRLESHATA REFBEL pearsonKorelasyon TESTOKUHATA TEKRAR varyans anlamliBasamak TESTSIFIR TVARYANS genisHesap basamakSayisi SICFARKI standartSapma"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="Hesap"/>
   <ns1:parameter name="className" value="canias.Hesap"/>
@@ -83,7 +96,7 @@
   <ns1:parameter name="schemaQualified" value="http://canias"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://canias"/>
   <ns1:parameter name="wsdlServiceElement" value="HesapService"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns16:GenisHesap" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:canias.GenisHesap" xmlns:ns16="http://canias"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns19:GenisHesap" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:canias.GenisHesap" xmlns:ns19="http://canias"/>
  </ns1:service>
  <ns1:service name="Version" provider="java:RPC">
   <ns1:parameter name="allowedMethods" value="getVersion"/>

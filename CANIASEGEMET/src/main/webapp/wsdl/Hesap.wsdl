@@ -14,6 +14,49 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <element name="mainResponse">
     <complexType/>
    </element>
+   <element name="varyans">
+    <complexType>
+     <sequence>
+      <element name="x" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="varyansResponse">
+    <complexType>
+     <sequence>
+      <element name="varyansReturn" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="standartSapma">
+    <complexType>
+     <sequence>
+      <element name="x" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="standartSapmaResponse">
+    <complexType>
+     <sequence>
+      <element name="standartSapmaReturn" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="pearsonKorelasyon">
+    <complexType>
+     <sequence>
+      <element name="obhtype" type="xsd:string"/>
+      <element name="obhno" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="pearsonKorelasyonResponse">
+    <complexType>
+     <sequence>
+      <element name="pearsonKorelasyonReturn" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
    <element name="anlamliBasamak">
     <complexType>
      <sequence>
@@ -102,6 +145,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <complexType>
      <sequence>
       <element name="bolen" type="xsd:double"/>
+      <element name="calismaaraligi" type="xsd:double"/>
      </sequence>
     </complexType>
    </element>
@@ -116,6 +160,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <complexType>
      <sequence>
       <element name="bolen" type="xsd:double"/>
+      <element name="calismaaraligi" type="xsd:double"/>
      </sequence>
     </complexType>
    </element>
@@ -173,6 +218,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      <sequence>
       <element name="obhtype" type="xsd:string"/>
       <element name="obhno" type="xsd:string"/>
+      <element name="calismaaraligi" type="xsd:double"/>
      </sequence>
     </complexType>
    </element>
@@ -288,6 +334,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="varyansRequest">
+
+      <wsdl:part element="impl:varyans" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="SICFARKITESTREFResponse">
 
       <wsdl:part element="impl:SICFARKITESTREFResponse" name="parameters">
@@ -336,6 +390,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="varyansResponse">
+
+      <wsdl:part element="impl:varyansResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="dagilimResponse">
 
       <wsdl:part element="impl:dagilimResponse" name="parameters">
@@ -355,6 +417,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="REFKAYMAResponse">
 
       <wsdl:part element="impl:REFKAYMAResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="standartSapmaRequest">
+
+      <wsdl:part element="impl:standartSapma" name="parameters">
 
       </wsdl:part>
 
@@ -440,6 +510,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="pearsonKorelasyonResponse">
+
+      <wsdl:part element="impl:pearsonKorelasyonResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="TESTSIFIRResponse">
 
       <wsdl:part element="impl:TESTSIFIRResponse" name="parameters">
@@ -464,6 +542,22 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="standartSapmaResponse">
+
+      <wsdl:part element="impl:standartSapmaResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="pearsonKorelasyonRequest">
+
+      <wsdl:part element="impl:pearsonKorelasyon" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="TVARYANSResponse">
 
       <wsdl:part element="impl:TVARYANSResponse" name="parameters">
@@ -481,6 +575,42 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:mainResponse" name="mainResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="varyans">
+
+         <wsdl:input message="impl:varyansRequest" name="varyansRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:varyansResponse" name="varyansResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="standartSapma">
+
+         <wsdl:input message="impl:standartSapmaRequest" name="standartSapmaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:standartSapmaResponse" name="standartSapmaResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="pearsonKorelasyon">
+
+         <wsdl:input message="impl:pearsonKorelasyonRequest" name="pearsonKorelasyonRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:pearsonKorelasyonResponse" name="pearsonKorelasyonResponse">
 
        </wsdl:output>
 
@@ -671,6 +801,60 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="mainResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="varyans">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="varyansRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="varyansResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="standartSapma">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="standartSapmaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="standartSapmaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="pearsonKorelasyon">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="pearsonKorelasyonRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="pearsonKorelasyonResponse">
 
             <wsdlsoap:body use="literal"/>
 

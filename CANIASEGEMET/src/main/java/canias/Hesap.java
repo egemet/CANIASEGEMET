@@ -16,17 +16,20 @@ public class Hesap {
 	
 //	System.out.println(genisHesap("1","1"));
 
-	  System.out.println(anlamliBasamak(100.245));
-	  System.out.println(anlamliBasamak(0.245));
-	  System.out.println(anlamliBasamak(0.00245));
-	  System.out.println(anlamliBasamak(0.04051));
-	  System.out.println(anlamliBasamak(2345.09));
-	  System.out.println(anlamliBasamak(24.8514));
-	  System.out.println(anlamliBasamak(100.0023));
-	  
-	  System.out.println(anlamliBasamak(0.299));
+//	  System.out.println(anlamliBasamak(100.245));
+//	  System.out.println(anlamliBasamak(0.245));
+//	  System.out.println(anlamliBasamak(0.00245));
+//	  System.out.println(anlamliBasamak(0.04051));
+//	  System.out.println(anlamliBasamak(2345.09));
+//	  System.out.println(anlamliBasamak(24.8514));
+//	  System.out.println(anlamliBasamak(100.0023));
+//	  
+//	  System.out.println(anlamliBasamak(0.299));
 	 
+//	  System.out.println(pearsonKorelasyon("1", "1"));
 	  
+	  System.out.println("Standart Sapma : "+standartSapma("10#8#10#8#8#4#"));
+	  System.out.println("Varyans : "+varyans("10#8#10#8#8#4#"));
 	  
 //	  System.out.println(anlamliBasamak(11.02302));
 //	  System.out.println(anlamliBasamak(11.52));
@@ -46,7 +49,7 @@ public class Hesap {
 	}
 	
 	public static double OLCHATA(double bolen) throws ClassNotFoundException, SQLException {
-	
+		
 		return 2.977/bolen;
 }
 
@@ -65,7 +68,7 @@ public class Hesap {
 		return 0/bolen;
 }
 
-	public static double SICFARKI(double bolen) throws ClassNotFoundException, SQLException {
+	public static double SICFARKI(double bolen,double calismaaraligi) throws ClassNotFoundException, SQLException {
 		Connection con = null;
 		
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -77,16 +80,16 @@ public class Hesap {
 		String query = "";
 
 		
-		double calismaraligi = 0;
+//		double calismaraligi = 0;
 		double isilkatsayi = 0;
 		
-		query = "SELECT * FROM EGMOBHT006 WHERE RCODE ='Çalýþma Aralýðý' ";
-		rs = st.executeQuery(query);
-		while(rs.next()) {
-				
-			calismaraligi = rs.getDouble("DEGER");
-		
-		}
+//		query = "SELECT * FROM EGMOBHT006 WHERE RCODE ='Çalýþma Aralýðý' ";
+//		rs = st.executeQuery(query);
+//		while(rs.next()) {
+//				
+//			calismaraligi = rs.getDouble("DEGER");
+//		
+//		}
 		
 		query = "SELECT * FROM EGMOBHT006 WHERE RCODE ='Isýl Genleþme' ";
 		rs = st.executeQuery(query);
@@ -96,10 +99,10 @@ public class Hesap {
 		
 		}
 		
-		return 1*isilkatsayi*calismaraligi*1000/bolen;
+		return 1*isilkatsayi*calismaaraligi*1000/bolen;
 }
 	
-	public static double SICFARKITESTREF(double bolen) throws ClassNotFoundException, SQLException {
+	public static double SICFARKITESTREF(double bolen,double calismaaraligi) throws ClassNotFoundException, SQLException {
 		Connection con = null;
 		
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -111,17 +114,17 @@ public class Hesap {
 		String query = "";
 
 		
-		double calismaraligi = 0;
+//		double calismaraligi = 0;
 		double isilkatsayi = 0;
 		
 		
-		query = "SELECT * FROM EGMOBHT006 WHERE RCODE ='Çalýþma Aralýðý' ";
-		rs = st.executeQuery(query);
-		while(rs.next()) {
-				
-			calismaraligi = rs.getDouble("DEGER");
-		
-		}
+//		query = "SELECT * FROM EGMOBHT006 WHERE RCODE ='Çalýþma Aralýðý' ";
+//		rs = st.executeQuery(query);
+//		while(rs.next()) {
+//				
+//			calismaraligi = rs.getDouble("DEGER");
+//		
+//		}
 
 		query = "SELECT * FROM EGMOBHT006 WHERE RCODE ='Isýl Genleþme' ";
 		rs = st.executeQuery(query);
@@ -132,7 +135,7 @@ public class Hesap {
 		}
 		isilkatsayi = isilkatsayi * 0.2;
 		
-		return 1*isilkatsayi*calismaraligi*1000/bolen;
+		return 1*isilkatsayi*calismaaraligi*1000/bolen;
 }
 
 	public static double TESTSIFIR(double bolen) throws ClassNotFoundException, SQLException {
@@ -199,7 +202,7 @@ public class Hesap {
 		
 		}
 		
-	public static GenisHesap genisHesap(String obhtype,String obhno) throws ClassNotFoundException, SQLException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+	public static GenisHesap genisHesap(String obhtype,String obhno,double calismaaraligi) throws ClassNotFoundException, SQLException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
 		
 		Connection con = null;
 		
@@ -225,10 +228,13 @@ public class Hesap {
 			for(int m=0;m<arr_method.length;m++) {
 				System.out.println("Method : "+arr_method[m].getName());
 				if(arr_method[m].getName().equals(rs.getString("RCODE"))) {
-				
-					double func = (double) arr_method[m].invoke(hnesne, rs.getDouble("BOLEN"));
+					double func = 0;
+					if(arr_method[m].getName().startsWith("SICFARKI")) {
+					func = (double) arr_method[m].invoke(hnesne, rs.getDouble("BOLEN"),calismaaraligi);	
+					}else {
+					func = (double) arr_method[m].invoke(hnesne, rs.getDouble("BOLEN"));
 					System.out.println("Func:"+func);
-					
+					}
 					nesne.getClass().getField(rs.getString("RCODE")).setDouble(nesne, func);
 					System.out.println(rs.getString("RCODE")+" nesne degeri:"+nesne.getClass().getField(rs.getString("RCODE")).getDouble(nesne));
 					toplam += Math.pow(nesne.getClass().getField(rs.getString("RCODE")).getDouble(nesne),2);
@@ -357,6 +363,116 @@ return bolen;
                            + j);
         return j+"";
     }
+	public static double pearsonKorelasyon(String obhtype,String obhno) throws ClassNotFoundException, SQLException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+		
+		Connection con = null;
+		
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		String sqlConnStr = "jdbc:sqlserver://CANIAS;databaseName=EGEMET604;user=IAS;password=IAS;";
+		con = DriverManager.getConnection(sqlConnStr);
+		con.setAutoCommit(true);
+		Statement st = con.createStatement();
+		Statement st2 = con.createStatement();
+		ResultSet rs = null;
+		String query = "";
+		
+		ArrayList<Double> arr_x = new ArrayList<Double>();
+		ArrayList<Double> arr_y = new ArrayList<Double>();
+		query = "select * from EGMOBHT009 ";
+		rs = st.executeQuery(query);
+		while(rs.next()) {
+			
+			GenisHesap nesne = new GenisHesap();
+			nesne = genisHesap(obhtype, obhno,rs.getDouble("XVALUE"));
+			arr_x.add(rs.getDouble("XVALUE"));
+			arr_y.add(nesne.getEXPUNCER());	
+			st2.executeUpdate("update EGMOBHT009 set YVALUE = "+nesne.getEXPUNCER()+" where XVALUE = "+rs.getDouble("XVALUE"));
+			
+		}
+		
+		
+		double r = 0;
+		double n = arr_x.size();
+		
+		
+		double topX = 0;
+		double topY = 0;
+		double topX2 = 0;
+		double topY2 = 0;
+		double topXY = 0;
+		
+		
+		
+		for(int i=0;i<arr_x.size();i++) {
+			topX += arr_x.get(i);
+			topY += arr_y.get(i);
+			topXY += arr_x.get(i)*arr_y.get(i);
+			topX2 += Math.pow(arr_x.get(i), 2);
+			topY2 += Math.pow(arr_y.get(i), 2);
+		}
+		
+		
+		
+		System.out.println("-------------------\n"+topX+"\n"+topY+"\n"+topXY+"\n"+topX2+"\n"+topY2);
+		
+		
+		r = (n*topXY - (topX * topY)) / Math.sqrt((n*topX2-(topX*topX))*(n*topY2-(topY*topY)));
+		
+		con.close();
+		return r;
+	}
 	
+	public static double standartSapma(String x) {
+	
+		
+		// Bir örnek dizisinde yer alan deðerlerin standart sapmasý yine bu deðerlerin varyansýnýn kareköküne eþittir.
+		// Önce varyans hesaplandý , sonra bulunan deðerin karekökü alýndý. 
+		double s = Math.sqrt(varyans(x));		
+		return s;
+	}
+	public static double varyans (String x) {
+		
+		// IAS tan gelen deðerler aralarýna # iþareti koyarak ayýrýlmýþ bir string halinde fonksiyona iletildi.
+		
+		double v = 0; 				// Fonsiyonun döndüreceði deðer
+		double topX = 0;			// Fonksiyona gönderilen deðerler toplamý
+		double ortX = 0;			// Fonksiyona gönderilen deðerlerin ortalamasý
+		double topX_Xort_kare = 0; 	// Her bir deðerin ortalamadan farkýnýn karelerinin toplamý
+		double n = 0;
+		ArrayList<Double> arr_x = new ArrayList<Double>();
+		
+		
+		
+		if(x.contains("#")) {
+			
+		// Gelen string te yer alan deðerler bir listeye alýndý bu aþamada deðerlerin toplamý da topX deðiþkenine yazýldý.
+			for(int i=0;i<x.split("#").length;i++) {
+				arr_x.add( Double.parseDouble(x.split("#")[i]));
+				topX += Double.parseDouble(x.split("#")[i]);
+			}
+			
+			// Deðerlerin toplamý eleman sayýsýna bölünerek ortalama hesaplandý.
+			ortX = topX / arr_x.size();
+			
+			
+			for(int j=0;j<arr_x.size();j++) {
+				
+			//	Her bir deðerin ortalamadan farkýnýn karesi bulunarak deðiþkene eklendi.
+				topX_Xort_kare += Math.pow(arr_x.get(j)-ortX,2);
+			}
+			
+			// Örnek sayýsýna bakarak n' e mi yoksa n-1 e mi bölüneceðine karar veriliyor. 
+			if(arr_x.size()<30 && arr_x.size()>1) {
+				n = arr_x.size()-1;
+			}
+			if(arr_x.size()>=30) {
+				n = arr_x.size();
+			}
+			// n , n-1 hangisinin uygulanacaðýna karar verildi.
+			
+				v = topX_Xort_kare/n; // Varyans hesaplandý.
+		}
+		return v;
+	}	
 }
 

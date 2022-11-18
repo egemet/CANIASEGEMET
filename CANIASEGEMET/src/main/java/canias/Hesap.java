@@ -9,184 +9,60 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class Hesap {
   public static void main(String[] args) throws ClassNotFoundException, SQLException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException, InvocationTargetException { 
 	
-//	System.out.println(genisHesap("1","1"));
 
-//	  System.out.println(anlamliBasamak(100.245));
-//	  System.out.println(anlamliBasamak(0.245));
-//	  System.out.println(anlamliBasamak(0.00245));
-//	  System.out.println(anlamliBasamak(0.04051));
-//	  System.out.println(anlamliBasamak(2345.09));
-//	  System.out.println(anlamliBasamak(24.8514));
-//	  System.out.println(anlamliBasamak(100.0023));
-//	  
-//	  System.out.println(anlamliBasamak(0.299));
-	 
-//	  System.out.println(pearsonKorelasyon("1", "1"));
 	  
-	  System.out.println("Standart Sapma : "+standartSapma("10#8#10#8#8#4#"));
-	  System.out.println("Varyans : "+varyans("10#8#10#8#8#4#"));
-	  
-//	  System.out.println(anlamliBasamak(11.02302));
-//	  System.out.println(anlamliBasamak(11.52));
-//	  System.out.println(anlamliBasamak(0.02302));
-//	  System.out.println(anlamliBasamak(0.002));
-//	  System.out.println(anlamliBasamak(11125.02302));
-//	  System.out.println(anlamliBasamak(11.02302));
-//	  System.out.println(anlamliBasamak(-0.407302));
-//	  System.out.println(anlamliBasamak(-0.402302));
+System.out.println(genisHesap("00000001", ""));
 	
   }
   
-	public static double REFBEL(double bolen) throws ClassNotFoundException, SQLException {
+	public static double REFBEL(double bolen,double obh) throws ClassNotFoundException, SQLException {
 				
-				return Math.sqrt(Math.pow(56,2)+Math.pow(0.4*1000,2))/1000/bolen;
-	
+		return obh/bolen;
 	}
 	
-	public static double OLCHATA(double bolen) throws ClassNotFoundException, SQLException {
+	public static double OLCHATA(double bolen,double olchatakatsayisi) throws ClassNotFoundException, SQLException {
 		
-		return 2.977/bolen;
+		return olchatakatsayisi/bolen;
 }
 
-	public static double BIRLESHATA( double bolen) throws ClassNotFoundException, SQLException {
+	public static double BIRLESHATA( double bolen, double ref_deger) throws ClassNotFoundException, SQLException {
 		
-		return 0/bolen;
+		return ref_deger/bolen;
 }
 
-	public static double REFKAYMA(double bolen) throws ClassNotFoundException, SQLException {
+	public static double REFKAYMA(double bolen,double kkayma) throws ClassNotFoundException, SQLException {
 	
-		return ((0.02+0.25*1000/1000)*3*2)/bolen;
+		return kkayma*3*2/bolen;
 }
 
-	public static double TEKRAR(double bolen) throws ClassNotFoundException, SQLException {
+	public static double TEKRAR(double bolen,double std_sapma) throws ClassNotFoundException, SQLException {
 		
-		return 0/bolen;
+		return std_sapma/bolen;
 }
 
-	public static double SICFARKI(double bolen,double calismaaraligi) throws ClassNotFoundException, SQLException {
-		Connection con = null;
-		
-		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		String sqlConnStr = "jdbc:sqlserver://CANIAS;databaseName=EGEMET604;user=IAS;password=IAS;";
-		con = DriverManager.getConnection(sqlConnStr);
-		con.setAutoCommit(false);
-		Statement st = con.createStatement();
-		ResultSet rs = null;
-		String query = "";
-
-		
-//		double calismaraligi = 0;
-		double isilkatsayi = 0;
-		
-//		query = "SELECT * FROM EGMOBHT006 WHERE RCODE ='Çalýþma Aralýðý' ";
-//		rs = st.executeQuery(query);
-//		while(rs.next()) {
-//				
-//			calismaraligi = rs.getDouble("DEGER");
-//		
-//		}
-		
-		query = "SELECT * FROM EGMOBHT006 WHERE RCODE ='Isýl Genleþme' ";
-		rs = st.executeQuery(query);
-		while(rs.next()) {
-				
-			isilkatsayi = rs.getDouble("DEGER");
-		
-		}
+	public static double SICFARKI(double bolen,double calismaaraligi,double isilkatsayi) throws ClassNotFoundException, SQLException {
 		
 		return 1*isilkatsayi*calismaaraligi*1000/bolen;
 }
 	
-	public static double SICFARKITESTREF(double bolen,double calismaaraligi) throws ClassNotFoundException, SQLException {
-		Connection con = null;
+	public static double SICFARKITESTREF(double bolen,double calismaaraligi,double isilkatsayi) throws ClassNotFoundException, SQLException {
 		
-		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		String sqlConnStr = "jdbc:sqlserver://CANIAS;databaseName=EGEMET604;user=IAS;password=IAS;";
-		con = DriverManager.getConnection(sqlConnStr);
-		con.setAutoCommit(false);
-		Statement st = con.createStatement();
-		ResultSet rs = null;
-		String query = "";
-
-		
-//		double calismaraligi = 0;
-		double isilkatsayi = 0;
-		
-		
-//		query = "SELECT * FROM EGMOBHT006 WHERE RCODE ='Çalýþma Aralýðý' ";
-//		rs = st.executeQuery(query);
-//		while(rs.next()) {
-//				
-//			calismaraligi = rs.getDouble("DEGER");
-//		
-//		}
-
-		query = "SELECT * FROM EGMOBHT006 WHERE RCODE ='Isýl Genleþme' ";
-		rs = st.executeQuery(query);
-		while(rs.next()) {
-				
-			isilkatsayi = rs.getDouble("DEGER");
-		
-		}
-		isilkatsayi = isilkatsayi * 0.2;
-		
-		return 1*isilkatsayi*calismaaraligi*1000/bolen;
+		return 1*isilkatsayi*0.2*calismaaraligi*1000/bolen;
 }
 
-	public static double TESTSIFIR(double bolen) throws ClassNotFoundException, SQLException {
-		
-		Connection con = null;
-		
-		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		String sqlConnStr = "jdbc:sqlserver://CANIAS;databaseName=EGEMET604;user=IAS;password=IAS;";
-		con = DriverManager.getConnection(sqlConnStr);
-		con.setAutoCommit(false);
-		Statement st = con.createStatement();
-		ResultSet rs = null;
-		String query = "";
-
-		
-		double cozunurluk = 0;
-		
-		query = "SELECT * FROM EGMOBHT006 WHERE RCODE ='Çözünürlük' ";
-		rs = st.executeQuery(query);
-		while(rs.next()) {
-				
-			cozunurluk = rs.getDouble("DEGER");
-		
-		}
-		
+	public static double TESTSIFIR(double bolen,double cozunurluk) throws ClassNotFoundException, SQLException {
 		
 		return cozunurluk*1000/2/bolen;
 }
 
-	public static double TESTOKUHATA(double bolen) throws ClassNotFoundException, SQLException {
-		Connection con = null;
-		
-		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		String sqlConnStr = "jdbc:sqlserver://CANIAS;databaseName=EGEMET604;user=IAS;password=IAS;";
-		con = DriverManager.getConnection(sqlConnStr);
-		con.setAutoCommit(false);
-		Statement st = con.createStatement();
-		ResultSet rs = null;
-		String query = "";
-
-		
-		double cozunurluk = 0;
-		
-		query = "SELECT * FROM EGMOBHT006 WHERE RCODE ='Çözünürlük' ";
-		rs = st.executeQuery(query);
-		while(rs.next()) {
-				
-			cozunurluk = rs.getDouble("DEGER");
-		
-		}
-		
+	public static double TESTOKUHATA(double bolen,double cozunurluk) throws ClassNotFoundException, SQLException {
+	
 		return cozunurluk*1000/2/bolen;
 		
 }
@@ -202,7 +78,9 @@ public class Hesap {
 		
 		}
 		
-	public static GenisHesap genisHesap(String obhtype,String obhno,double calismaaraligi) throws ClassNotFoundException, SQLException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+	public static GenisHesap genisHesap(String okftype,String okfnum) throws ClassNotFoundException, SQLException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
 		Connection con = null;
 		
@@ -216,34 +94,130 @@ public class Hesap {
 		GenisHesap nesne = new GenisHesap();
 		
 		double toplam = 0;
+		String obhtype = "";
+		String obhcode = "";
+		String ckodu = "";
+		String kaldate = "";
+		double calismaaraligi = 0;
+		double cozunurluk = 0;
+		double isilkatsayi = 0;
+		double meauncer = 0;
+		double differ = 0;
+		double drift = 0;
+		double std_sapma = 0;
 		
-		query = "select E4.*,E2.DAGILIMNAME,E2.BOLEN from EGMOBHT004 E4 JOIN EGMOBHT002 E2 ON E4.DAGILIM = E2.DAGILIMNO  where E4.OBHTYPE="+obhtype+" and E4.OBHNO = "+obhno+" and E4.RCODE not in ('TVARYANS','STDUNCER','EXPUNCER','EXPUNCER2') ";
+		query = "select * from EGMSERT001 where OKFTYPE='"+okftype+"' and OKFNUM = '"+okfnum+"' ";
+		rs = st.executeQuery(query);
+		while(rs.next()) {
+			obhcode = rs.getString("OBHCODE");
+			obhtype = rs.getString("OBHTYPE");
+			ckodu = rs.getString("RCKODU1");
+			kaldate = sdf.format(rs.getTimestamp("CALDATE"));
+			calismaaraligi = rs.getDouble("OLMAX1");
+			cozunurluk = rs.getDouble("COZUNURLUK1");
+			isilkatsayi = rs.getDouble("DECHAM1");
+		}
+		
+		String olcumler = "";
+		query = "select * from EGMSERT002 where OKFTYPE='"+okftype+"' and OKFNUM = '"+okfnum+"' ";
+		rs = st.executeQuery(query);
+		while(rs.next()) {
+			olcumler += rs.getDouble("OLC1")+"#";
+		}
+		
+		std_sapma = standartSapma(olcumler);
+		
+		System.out.println("CKODU :"+ckodu+" CALDATE:"+kaldate);
+		String ekc_return = ekcDenGetir(ckodu, kaldate);
+		meauncer = Double.parseDouble(ekc_return.split("#")[0]);
+		differ = Double.parseDouble(ekc_return.split("#")[1]);
+		drift = Double.parseDouble(ekc_return.split("#")[2]);
+		
+		query = "select E4.*,E2.DAGILIMNAME,E2.BOLEN from EGMOBHT004 E4 JOIN EGMOBHT002 E2 ON E4.DAGILIM = E2.DAGILIMNO  where E4.OBHTYPE="+obhtype+" and E4.OBHNO = "+obhcode+" and E4.RCODE not in ('TVARYANS','STDUNCER','EXPUNCER','EXPUNCER2') ";
 		rs = st.executeQuery(query);
 		while(rs.next()) {
 				
-		Hesap hnesne = new Hesap();
-		
-		Method[] arr_method = hnesne.getClass().getDeclaredMethods();
 			
-			for(int m=0;m<arr_method.length;m++) {
-				System.out.println("Method : "+arr_method[m].getName());
-				if(arr_method[m].getName().equals(rs.getString("RCODE"))) {
-					double func = 0;
-					if(arr_method[m].getName().startsWith("SICFARKI")) {
-					func = (double) arr_method[m].invoke(hnesne, rs.getDouble("BOLEN"),calismaaraligi);	
-					}else {
-					func = (double) arr_method[m].invoke(hnesne, rs.getDouble("BOLEN"));
-					System.out.println("Func:"+func);
-					}
-					nesne.getClass().getField(rs.getString("RCODE")).setDouble(nesne, func);
-					System.out.println(rs.getString("RCODE")+" nesne degeri:"+nesne.getClass().getField(rs.getString("RCODE")).getDouble(nesne));
-					toplam += Math.pow(nesne.getClass().getField(rs.getString("RCODE")).getDouble(nesne),2);
-				}
-			}
+		if(rs.getString("RCODE").equals("REFBEL")) {
+			nesne.setREFBEL(REFBEL(rs.getDouble("BOLEN"), meauncer));
+		}
+		if(rs.getString("RCODE").equals("OLCHATA")) {
+			nesne.setOLCHATA(OLCHATA(rs.getDouble("BOLEN"), differ));
+		}
+		if(rs.getString("RCODE").equals("BIRLESHATA")) {
+			nesne.setBIRLESHATA(BIRLESHATA(rs.getDouble("BOLEN"), 0));
+		}
+		if(rs.getString("RCODE").equals("REFKAYMA")) {
+			nesne.setREFKAYMA(REFKAYMA(rs.getDouble("BOLEN"), drift));
+		}
+		if(rs.getString("RCODE").equals("TEKRAR")) {
+			nesne.setTEKRAR(TEKRAR(rs.getDouble("BOLEN"), std_sapma));
+		}
+		if(rs.getString("RCODE").equals("SICFARKI")) {
+			nesne.setSICFARKI(SICFARKI(rs.getDouble("BOLEN"), calismaaraligi,isilkatsayi));
+		}
+		if(rs.getString("RCODE").equals("SICFARKITESTREF")) {
+			nesne.setSICFARKITESTREF(SICFARKITESTREF(rs.getDouble("BOLEN"), calismaaraligi,isilkatsayi));
+		}
+		if(rs.getString("RCODE").equals("TESTSIFIR")) {
+			nesne.setTESTSIFIR(TESTSIFIR(rs.getDouble("BOLEN"), cozunurluk));
+		}
+		if(rs.getString("RCODE").equals("TESTOKUHATA")) {
+			nesne.setTESTOKUHATA(TESTOKUHATA(rs.getDouble("BOLEN"), cozunurluk));
+		}
+		toplam += Math.pow(nesne.getClass().getField(rs.getString("RCODE")).getDouble(nesne),2);
+		
+//			for(int m=0;m<arr_method.length;m++) {
+//				boolean hata =false;
+//				System.out.println("Method : "+arr_method[m].getName());
+//				if(arr_method[m].getName().equals(rs.getString("RCODE"))) {
+//					double func = 0;
+//					
+//					if(arr_method[m].getName().startsWith("REFBEL")) {
+//						func = (double) arr_method[m].invoke(hnesne, rs.getDouble("BOLEN"),meauncer);	
+//						hata = true;
+//					}
+//					if(arr_method[m].getName().startsWith("OLCHATA")) {
+//						func = (double) arr_method[m].invoke(hnesne, rs.getDouble("BOLEN"),differ);	
+//						hata = true;
+//					}
+//					if(arr_method[m].getName().startsWith("BIRLESHATA")) {
+//						func = (double) arr_method[m].invoke(hnesne, rs.getDouble("BOLEN"),0);	
+//						hata = true;
+//					}
+//					if(arr_method[m].getName().startsWith("REFKAYMA")) {
+//						func = (double) arr_method[m].invoke(hnesne, rs.getDouble("BOLEN"),drift);	
+//						hata = true;
+//					}
+//					if(arr_method[m].getName().startsWith("TEKRAR")) {
+//						func = (double) arr_method[m].invoke(hnesne, rs.getDouble("BOLEN"),std_sapma);	
+//						hata = true;
+//					}
+//					if(arr_method[m].getName().startsWith("SICFARKI")) {
+//					func = (double) arr_method[m].invoke(hnesne, rs.getDouble("BOLEN"),calismaaraligi,isilkatsayi);
+//					hata = true;
+//					}
+//					if(arr_method[m].getName().startsWith("TESTSIFIR")) {
+//						func = (double) arr_method[m].invoke(hnesne, rs.getDouble("BOLEN"),cozunurluk);	
+//						hata = true;
+//					}
+//					if(arr_method[m].getName().startsWith("TESTOKUHATA")) {
+//						func = (double) arr_method[m].invoke(hnesne, rs.getDouble("BOLEN"),cozunurluk);	
+//						hata = true;
+//					}
+//					else {
+////					func = (double) arr_method[m].invoke(hnesne, rs.getDouble("BOLEN"));
+//					System.out.println("Func:"+func);
+//					nesne.HATAMESAJI = "HATA#Fonksiyon Bulunamadý:"+arr_method[m].getName().;
+//					
+//					}
+//					nesne.getClass().getField(rs.getString("RCODE")).setDouble(nesne, func);
+//					System.out.println(rs.getString("RCODE")+" nesne degeri:"+nesne.getClass().getField(rs.getString("RCODE")).getDouble(nesne));
+//					toplam += Math.pow(nesne.getClass().getField(rs.getString("RCODE")).getDouble(nesne),2);
+//				}
+//			}
 			
 		}
-		
-		System.out.println(	nesne.REFBEL);
 		
 		nesne.TVARYANS = toplam;
 		nesne.STDUNCER = Math.sqrt(toplam);
@@ -383,7 +357,7 @@ return bolen;
 		while(rs.next()) {
 			
 			GenisHesap nesne = new GenisHesap();
-			nesne = genisHesap(obhtype, obhno,rs.getDouble("XVALUE"));
+			nesne = genisHesap(obhtype+"", obhno+"");
 			arr_x.add(rs.getDouble("XVALUE"));
 			arr_y.add(nesne.getEXPUNCER());	
 			st2.executeUpdate("update EGMOBHT009 set YVALUE = "+nesne.getEXPUNCER()+" where XVALUE = "+rs.getDouble("XVALUE"));
@@ -473,6 +447,47 @@ return bolen;
 				v = topX_Xort_kare/n; // Varyans hesaplandý.
 		}
 		return v;
-	}	
+	}
+	public static String ekcDenGetir(String ekc,String caldate) throws ClassNotFoundException, SQLException {
+	
+		
+		
+		String sertifikano = "";
+		String kaldate = "";
+		double obh = 0;
+		double olcumhata = 0;
+		double drift = 0;
+		
+		
+		
+		Connection con = null;
+		
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		String sqlConnStr = "jdbc:sqlserver://CANIAS;databaseName=EGEMET604;user=IAS;password=IAS;";
+		con = DriverManager.getConnection(sqlConnStr);
+		con.setAutoCommit(true);
+		Statement st = con.createStatement();
+		Statement st2 = con.createStatement();
+		ResultSet rs = null;
+		String query = "select top 1 * from EGT.dbo.EGECIHAZ c join EGT.dbo.EGECIHAZITEM i on c.CKODU = i.CKODU and i.COMPANY = c.COMPANY "
+				+" where CALDATE<='"+caldate+"' and CALDATEEND>='"+caldate+"' and NOTUSE = 0 and c.CKODU = '"+ekc+"' order by CALDATE desc ";
+		rs = st.executeQuery(query);
+		while(rs.next()) {
+			sertifikano = rs.getString("CERTIFICATE");
+			kaldate = rs.getString("CALDATE");
+		}
+		
+		query = "select * from EGMREFT001 where COMPANY = '02' and CKODU = '"+ekc+"' and CERTIFICATE = '"+sertifikano+"' and CALDATE = '"+kaldate+"' ";
+		rs=st.executeQuery(query);
+		while(rs.next())
+		{
+			obh = rs.getDouble("MEAUNCER");
+			olcumhata = rs.getDouble("DIFFER");
+			drift = rs.getDouble("DRIFT");
+			
+		}
+		con.close();
+		return obh+"#"+olcumhata+"#"+drift;
+	}
 }
 

@@ -17,7 +17,12 @@ public class Hesap {
 	
 
 	  
-System.out.println(genisHesap("00000001", ""));
+//System.out.println(genisHesap("00000001", ""));
+	  
+//	 System.out.println( dogrusalRegresyon("100#150#200#250#300", "8#12#14#15#16"));
+//	 System.out.println( dogrusalRegresyon("2#12#5#10#0", "30#65#50#80#10"));
+//	 System.out.println( dogrusalRegresyon("85#77#80#18#3#3#76#88#80#104#101#62#21#74#11#25#66#50#39#94#100#32#4#9", "42#32#35#5#1#1#35#27#32#40#50#25#3#28#4#5#27#20#18#36#45#9#1#5"));
+	 System.out.println( dogrusalRegresyon("0#0.001#0.00501#0.00999#0.04999#0.09999#0.50001#1#10.00001#19.99999#50.00001#81", "0.0000106#0.0000157#0.0000157#0.0000180#0.0000233#0.0000292#0.0000435#0.0000519#0.000113#0.000162#0.000266#0.000576"));
 	
   }
   
@@ -488,6 +493,37 @@ return bolen;
 		}
 		con.close();
 		return obh+"#"+olcumhata+"#"+drift;
+	}
+	public static String dogrusalRegresyon(String X,String Y) {
+		
+		String formul = "";
+		double topX = 0;
+		double topY = 0;
+		double topX2 = 0;
+		double topY2 = 0;
+		double topXY = 0;
+		double a = 0;
+		int n = X.split("#").length;
+		
+		for(int i=0;i<X.split("#").length;i++) {
+			topX += Double.parseDouble(X.split("#")[i]);
+			topY += Double.parseDouble(Y.split("#")[i]);
+			topXY += Double.parseDouble(X.split("#")[i]) * Double.parseDouble(Y.split("#")[i]);
+			topX2 += Math.pow(Double.parseDouble(X.split("#")[i]), 2);
+		}
+		
+		
+		
+		System.out.println("Top X ="+topX+"\nTop Y="+topY+"\nTopXY ="+topXY+"\nTop X2 "+topX2);
+		
+//		topY = 0.0013246;
+//		topXY = 0.0644053;
+		
+		double b = (n*topXY - topX*topY) / (n*topX2 - Math.pow(topX, 2));
+		
+		a = topY/n - b*topX/n;
+		formul = "y = "+a+" + "+b+"x";
+		return formul;
 	}
 }
 

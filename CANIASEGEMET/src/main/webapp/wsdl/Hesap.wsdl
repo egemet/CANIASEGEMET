@@ -24,17 +24,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      <element name="BIRLESHATA" type="xsd:double"/>
      <element name="EXPUNCER" type="xsd:double"/>
      <element name="EXPUNCER2" nillable="true" type="xsd:string"/>
+     <element name="HALFDGT" type="xsd:double"/>
      <element name="HATAMESAJI" nillable="true" type="xsd:string"/>
      <element name="OLCHATA" type="xsd:double"/>
-     <element name="REFBEL" type="xsd:double"/>
      <element name="REFKAYMA" type="xsd:double"/>
      <element name="SICFARKI" type="xsd:double"/>
      <element name="SICFARKITESTREF" type="xsd:double"/>
      <element name="STDUNCER" type="xsd:double"/>
      <element name="TEKRAR" type="xsd:double"/>
      <element name="TESTOKUHATA" type="xsd:double"/>
-     <element name="TESTSIFIR" type="xsd:double"/>
      <element name="TVARYANS" type="xsd:double"/>
+     <element name="UREF" type="xsd:double"/>
     </sequence>
    </complexType>
   </schema>

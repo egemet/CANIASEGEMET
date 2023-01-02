@@ -2,41 +2,63 @@ package canias;
 
 public class GenisHesap {
 
-	public double REFBEL;
-	public double OLCHATA;
-	public double BIRLESHATA;
-	public double REFKAYMA;
-	public double TEKRAR;
-	public double SICFARKI;
-	public double SICFARKITESTREF;
-	public double TESTSIFIR;
-	public double TESTOKUHATA;
+	public String UREF;
+	public String OLCKAL;
+	public String REFYUZEY;
+	public String OLCHATA;
+	public String TESTCOZ;
+	public String REFCOZ;
+	public String BIRLESHATA;
+	public String REFKAYMA;
+	public String TEKRAR;
+	public String SICFARKI;
+	public String REFSIC;
+	public String TESTSIC;
+	public String TESTOLCISILFARK;
+	public String TESTISILGEN;
+	public String REFISILGEN;
+	public String MEKANIKETKI;
 	public double TVARYANS;
 	public double STDUNCER;
 	public double EXPUNCER;
 	public String EXPUNCER2;
 	public String HATAMESAJI;
+
 	
 	
 	
 	public GenisHesap(){}
-	public GenisHesap(double refbel,double olchata,double birleshata,double refkayma,double tekrar,double sicfarki,double sicfarkitestref,double testsifir,double testokuhata,
+	public GenisHesap(String uref,String olckal,String refyuzey,String testcoz,String refcoz,String olchata,String birleshata,String refkayma,String tekrar,String sicfarki,String refsic,String testsic,String testolcisilfark,String sicfarkitestref,String halfdgt,String testokuhata,
 			double tvaryans,double stduncer,double expuncer,String expuncer2,String hatamesaji) {
 		this.BIRLESHATA=birleshata;
 		this.EXPUNCER=expuncer;
 		this.EXPUNCER2 = expuncer2;
 		this.OLCHATA=olchata;
-		this.REFBEL = refbel;
+		this.UREF = uref;
+		this.OLCKAL = olckal;
+		this.REFYUZEY = refyuzey;
+		this.TESTCOZ = testcoz;
+		this.REFCOZ = refcoz;
 		this.REFKAYMA = refkayma;
 		this.SICFARKI = sicfarki;
-		this.SICFARKITESTREF = sicfarkitestref;
+		this.REFSIC = refsic;
+		this.TESTSIC = testsic;
+		this.TESTISILGEN = sicfarkitestref;
+		this.TESTOLCISILFARK = testolcisilfark;
 		this.STDUNCER = stduncer;
 		this.TEKRAR = tekrar;
-		this.TESTOKUHATA = testokuhata;
-		this.TESTSIFIR = testsifir;
+		this.MEKANIKETKI = testokuhata;
+		this.REFISILGEN = halfdgt;
 		this.TVARYANS = tvaryans;
 		this.HATAMESAJI = hatamesaji;
+
 		
+	}
+	public String getREFYUZEY() {
+		return REFYUZEY;
+	}
+	public void setREFYUZEY(String rEFYUZEY) {
+		REFYUZEY = rEFYUZEY;
 	}
 	public String getHATAMESAJI() {
 		return HATAMESAJI;
@@ -44,59 +66,79 @@ public class GenisHesap {
 	public void setHATAMESAJI(String hATAMESAJI) {
 		HATAMESAJI = hATAMESAJI;
 	}
-	public double getREFBEL() {
-		return REFBEL;
+
+	public String getUREF() {
+		return UREF;
 	}
-	public void setREFBEL(double rEFBEL) {
-		REFBEL = rEFBEL;
+	public void setUREF(String uREF) {
+		UREF = uREF;
 	}
-	public double getOLCHATA() {
+	public String getOLCKAL() {
+		return OLCKAL;
+	}
+	public void setOLCKAL(String oLCKAL) {
+		OLCKAL = oLCKAL;
+	}
+
+	public String getOLCHATA() {
 		return OLCHATA;
 	}
-	public void setOLCHATA(double oLCHATA) {
+	public void setOLCHATA(String oLCHATA) {
 		OLCHATA = oLCHATA;
 	}
-	public double getBIRLESHATA() {
+	public String getBIRLESHATA() {
 		return BIRLESHATA;
 	}
-	public void setBIRLESHATA(double bIRLESHATA) {
+	public void setBIRLESHATA(String bIRLESHATA) {
 		BIRLESHATA = bIRLESHATA;
 	}
-	public double getREFKAYMA() {
+	public String getREFKAYMA() {
 		return REFKAYMA;
 	}
-	public void setREFKAYMA(double rEFKAYMA) {
+	public void setREFKAYMA(String rEFKAYMA) {
 		REFKAYMA = rEFKAYMA;
 	}
-	public double getTEKRAR() {
+	public String getTEKRAR() {
 		return TEKRAR;
 	}
-	public void setTEKRAR(double tEKRAR) {
+	public void setTEKRAR(String tEKRAR) {
 		TEKRAR = tEKRAR;
 	}
-	public double getSICFARKI() {
+	public String getSICFARKI() {
 		return SICFARKI;
 	}
-	public void setSICFARKI(double sICFARKI) {
+		public void setSICFARKI(String sICFARKI) {
 		SICFARKI = sICFARKI;
 	}
-	public double getSICFARKITESTREF() {
-		return SICFARKITESTREF;
+	public String getREFSIC() {
+	return REFSIC;
 	}
-	public void setSICFARKITESTREF(double sICFARKITESTREF) {
-		SICFARKITESTREF = sICFARKITESTREF;
+	public void setREFSIC(String rEFSIC) {
+	REFSIC = rEFSIC;
 	}
-	public double getTESTSIFIR() {
-		return TESTSIFIR;
+	public String getTESTSIC() {
+	return TESTSIC;
 	}
-	public void setTESTSIFIR(double tESTSIFIR) {
-		TESTSIFIR = tESTSIFIR;
+	public void setTESTSIC(String tESTSIC) {
+		TESTSIC = tESTSIC;
 	}
-	public double getTESTOKUHATA() {
-		return TESTOKUHATA;
+	public String getTESTISILGEN() {
+		return TESTISILGEN;
 	}
-	public void setTESTOKUHATA(double tESTOKUHATA) {
-		TESTOKUHATA = tESTOKUHATA;
+	public void setTESTISILGEN(String tESTISILGEN) {
+		TESTISILGEN = tESTISILGEN;
+	}
+	public String getREFISILGEN() {
+		return REFISILGEN;
+	}
+	public void setREFISILGEN(String rEFISILGEN) {
+		REFISILGEN = rEFISILGEN;
+	}
+	public String getMEKANIKETKI() {
+		return MEKANIKETKI;
+	}
+	public void setMEKANIKETKI(String mEKANIKETKI) {
+		MEKANIKETKI = mEKANIKETKI;
 	}
 	public double getTVARYANS() {
 		return TVARYANS;
@@ -122,6 +164,25 @@ public class GenisHesap {
 	public void setEXPUNCER2(String eXPUNCER2) {
 		EXPUNCER2 = eXPUNCER2;
 	}
+	public String getTESTCOZ() {
+		return TESTCOZ;
+	}
+	public void setTESTCOZ(String tESTCOZ) {
+		TESTCOZ = tESTCOZ;
+	}
+	public String getREFCOZ() {
+		return REFCOZ;
+	}
+	public void setREFCOZ(String rEFCOZ) {
+		REFCOZ = rEFCOZ;
+	}
+	public String getTESTOLCISILFARK() {
+		return TESTOLCISILFARK;
+	}
+	public void setTESTOLCISILFARK(String tESTOLCISILFARK) {
+		TESTOLCISILFARK = tESTOLCISILFARK;
+	}
+
 
 	
 	

@@ -15,9 +15,11 @@ public class GenisHesap {
 	public String REFSIC;
 	public String TESTSIC;
 	public String TESTOLCISILFARK;
+	public String DUZLEMSELLIK;
 	public String TESTISILGEN;
 	public String REFISILGEN;
 	public String MEKANIKETKI;
+	public String ORTBLKUZAMA;
 	public double TVARYANS;
 	public double STDUNCER;
 	public double EXPUNCER;
@@ -28,7 +30,7 @@ public class GenisHesap {
 	
 	
 	public GenisHesap(){}
-	public GenisHesap(String uref,String olckal,String refyuzey,String testcoz,String refcoz,String olchata,String birleshata,String refkayma,String tekrar,String sicfarki,String refsic,String testsic,String testolcisilfark,String sicfarkitestref,String halfdgt,String testokuhata,
+	public GenisHesap(String uref,String olckal,String refyuzey,String testcoz,String refcoz,String olchata,String birleshata,String duzlemsellik,String refkayma,String ortblkuzama,String tekrar,String sicfarki,String refsic,String testsic,String testolcisilfark,String sicfarkitestref,String halfdgt,String testokuhata,
 			double tvaryans,double stduncer,double expuncer,String expuncer2,String hatamesaji) {
 		this.BIRLESHATA=birleshata;
 		this.EXPUNCER=expuncer;
@@ -45,10 +47,12 @@ public class GenisHesap {
 		this.TESTSIC = testsic;
 		this.TESTISILGEN = sicfarkitestref;
 		this.TESTOLCISILFARK = testolcisilfark;
+		this.DUZLEMSELLIK = duzlemsellik;
 		this.STDUNCER = stduncer;
 		this.TEKRAR = tekrar;
 		this.MEKANIKETKI = testokuhata;
 		this.REFISILGEN = halfdgt;
+		this.ORTBLKUZAMA=ortblkuzama;
 		this.TVARYANS = tvaryans;
 		this.HATAMESAJI = hatamesaji;
 
@@ -183,8 +187,19 @@ public class GenisHesap {
 		TESTOLCISILFARK = tESTOLCISILFARK;
 	}
 
+	public String getORTBLKUZAMA() {
+		return ORTBLKUZAMA;
+	}
+	public void setORTBLKUZAMA(String oRTBLKUZAMA) {
+		ORTBLKUZAMA = oRTBLKUZAMA;
+	}
 
-	
+	public String getDUZLEMSELLIK() {
+		return DUZLEMSELLIK;
+	}
+	public void setDUZLEMSELLIK(String dUZLEMSELLIK) {
+		DUZLEMSELLIK = dUZLEMSELLIK;
+	}
 	
 	
 }

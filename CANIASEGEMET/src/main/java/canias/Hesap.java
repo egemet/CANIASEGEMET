@@ -17,7 +17,7 @@ public class Hesap {
 	
 
 	  
-System.out.println(genisHesap("1", "98"));
+System.out.println(genisHesap("1", "1"));
 	  
 //	 System.out.println( dogrusalRegresyon("100#150#200#250#300", "8#12#14#15#16"));
 //	 System.out.println( dogrusalRegresyon("2#12#5#10#0", "30#65#50#80#10"));
@@ -26,7 +26,7 @@ System.out.println(genisHesap("1", "98"));
 	
   }
   
-	public static String UREF(double bolen,double obh,boolean dk) throws ClassNotFoundException, SQLException {
+	public static String UREF(String obhcode,double bolen,double obh,boolean dk) throws ClassNotFoundException, SQLException {
 		double duyarlilikkatsayisi=0;
 		if (dk== false) {
 			
@@ -35,11 +35,25 @@ System.out.println(genisHesap("1", "98"));
 		else {
 			duyarlilikkatsayisi=1;
 		}
-
+		
 		return obh/bolen+"#"+duyarlilikkatsayisi+"#"+(obh/bolen)*duyarlilikkatsayisi;
 	}
+
+	public static String DUZLEMSELLIK(String obhcode,double bolen,double obh,boolean dk) throws ClassNotFoundException, SQLException {
+		double duyarlilikkatsayisi=0;
+		if (dk== false) {
+			
+		duyarlilikkatsayisi=1;
+		}
+		else {
+			duyarlilikkatsayisi=1;
+		}
+		
+		return obh/bolen+"#"+duyarlilikkatsayisi+"#"+(obh/bolen)*duyarlilikkatsayisi;
+	}
+
 	
-	public static String OLCKAL(double bolen,double obh,boolean dk) throws ClassNotFoundException, SQLException {
+	public static String OLCKAL(String obhcode,double bolen,double obh,boolean dk) throws ClassNotFoundException, SQLException {
 		double duyarlilikkatsayisi=0;
 		if (dk== false) {
 			
@@ -53,7 +67,7 @@ System.out.println(genisHesap("1", "98"));
 	}
 
 	
-	public static String REFYUZEY(double bolen,double obh,boolean dk) throws ClassNotFoundException, SQLException {
+	public static String REFYUZEY(String obhcode,double bolen,double obh,boolean dk) throws ClassNotFoundException, SQLException {
 		double duyarlilikkatsayisi=0;
 		if (dk== false) {
 			
@@ -66,7 +80,7 @@ System.out.println(genisHesap("1", "98"));
 		return obh/bolen+"#"+duyarlilikkatsayisi+"#"+(obh/bolen)*duyarlilikkatsayisi;
 	}
 
-	public static String TESTCOZ(double bolen,double cozunurluk,boolean dk) throws ClassNotFoundException, SQLException {
+	public static String TESTCOZ(String obhcode,double bolen,double cozunurluk,boolean dk) throws ClassNotFoundException, SQLException {
 		double duyarlilikkatsayisi=0;
 		if (dk== false) {
 			
@@ -75,11 +89,21 @@ System.out.println(genisHesap("1", "98"));
 		else {
 			duyarlilikkatsayisi=1;
 		}
-
-		return (cozunurluk*1000)/bolen+"#"+duyarlilikkatsayisi+"#"+((cozunurluk*1000)/bolen)*duyarlilikkatsayisi;
+		
+		
+		
+		if (obhcode.equals("24")) {
+			cozunurluk = cozunurluk*1 ;
+		}
+				else {
+			cozunurluk = cozunurluk *1000;
+		}
+		
+		
+		return cozunurluk/bolen+"#"+duyarlilikkatsayisi+"#"+(cozunurluk/bolen)*duyarlilikkatsayisi;
 	}
 
-	public static String REFCOZ(double bolen,double referanscoz,boolean dk) throws ClassNotFoundException, SQLException {
+	public static String REFCOZ(String obhcode,double bolen,double referanscoz,boolean dk) throws ClassNotFoundException, SQLException {
 		double duyarlilikkatsayisi=0;
 		if (dk== false) {
 			
@@ -94,7 +118,7 @@ System.out.println(genisHesap("1", "98"));
 	
 	
 	
-	public static String OLCHATA(double bolen,double olchatakatsayisi,boolean dk) throws ClassNotFoundException, SQLException {
+	public static String OLCHATA(String obhcode,double bolen,double olchatakatsayisi,boolean dk) throws ClassNotFoundException, SQLException {
 		double duyarlilikkatsayisi=0;
 		if (dk== false) {
 			
@@ -107,7 +131,35 @@ System.out.println(genisHesap("1", "98"));
 		return olchatakatsayisi/bolen+"#"+duyarlilikkatsayisi+"#"+(olchatakatsayisi/bolen)*duyarlilikkatsayisi;
 }
 
-	public static String BIRLESHATA( double bolen, double ref_deger,boolean dk) throws ClassNotFoundException, SQLException {
+	public static String BIRLESHATA(double refolcrange,double calismaaraligi,String obhcode, double bolen, double ref_deger,boolean dk) throws ClassNotFoundException, SQLException {
+		double duyarlilikkatsayisi=0;
+		if (dk== false) {
+			
+		duyarlilikkatsayisi=1;
+		}
+		else {
+			duyarlilikkatsayisi=1;
+		}
+		if (obhcode.equals("24")) {
+			
+			double eklemehata = 0;
+
+			if (calismaaraligi <= refolcrange) {
+				eklemehata = 0;
+			}
+			else {
+				eklemehata=((calismaaraligi-refolcrange)/refolcrange);	
+			}
+			
+			ref_deger=eklemehata*0.1;
+			
+				
+			}
+		
+		return ref_deger/bolen+"#"+duyarlilikkatsayisi+"#"+(ref_deger/bolen)*duyarlilikkatsayisi;
+}
+
+	public static String REFKAYMA(String obhcode,double bolen,double kkayma,boolean dk) throws ClassNotFoundException, SQLException {
 		double duyarlilikkatsayisi=0;
 		if (dk== false) {
 			
@@ -117,24 +169,26 @@ System.out.println(genisHesap("1", "98"));
 			duyarlilikkatsayisi=1;
 		}
 		
-		return ref_deger/bolen+"#"+duyarlilikkatsayisi+"#"+(ref_deger/bolen)*duyarlilikkatsayisi;
-}
-
-	public static String REFKAYMA(double bolen,double kkayma,boolean dk) throws ClassNotFoundException, SQLException {
-		double duyarlilikkatsayisi=0;
-		if (dk== false) {
+		
+		if (obhcode.equals("98")) {
 			
-		duyarlilikkatsayisi=1;
+			kkayma=0.03250044250000/1000;
+					
 		}
-		else {
-			duyarlilikkatsayisi=1;
-		}
+		
+		if (obhcode.equals("17")) {
 			
-		kkayma=0.000018764139226157;
-		return kkayma/bolen/1000+"#"+duyarlilikkatsayisi+"#"+(kkayma/bolen/1000)*duyarlilikkatsayisi;
+			kkayma=kkayma*3*2;
+					
+		}
+		
+		
+		
+		return kkayma/bolen+"#"+duyarlilikkatsayisi+"#"+(kkayma/bolen)*duyarlilikkatsayisi;
 }
+	
 
-	public static String TEKRAR(double bolen,double std_sapma,boolean dk) throws ClassNotFoundException, SQLException {
+	public static String TEKRAR(String obhcode,double bolen,double std_sapma,boolean dk) throws ClassNotFoundException, SQLException {
 		double duyarlilikkatsayisi=0;
 
 		
@@ -149,10 +203,15 @@ System.out.println(genisHesap("1", "98"));
 		return std_sapma/bolen+"#"+duyarlilikkatsayisi+"#"+(std_sapma/bolen)*duyarlilikkatsayisi;
 }
 
-	public static String SICFARKI(double bolen,double calismaaraligi,double isilkatsayi,double reftestsicfarki,boolean dk) throws ClassNotFoundException, SQLException {
+	public static String SICFARKI(String obhcode,double bolen,double calismaaraligi,double isilkatsayi,double reftestsicfarki,boolean dk) throws ClassNotFoundException, SQLException {
 		
 		double duyarlilikkatsayisi=0;
 		
+		if (obhcode.equals("87")) {
+			isilkatsayi=0.00000975;	
+		}
+		
+		System.out.println(isilkatsayi);
 		if (dk== false) {
 		
 		duyarlilikkatsayisi=1;
@@ -160,36 +219,108 @@ System.out.println(genisHesap("1", "98"));
 		else {
 			duyarlilikkatsayisi=isilkatsayi*calismaaraligi*1000;
 		}
+		
+		if (obhcode.equals("98")) {
+			duyarlilikkatsayisi=0.00025201;	
+		
+		}
+		
+		if (obhcode.equals("24")) {		
+			reftestsicfarki  = reftestsicfarki*2;
+		}
+
+		if (obhcode.equals("1")) {		
+			reftestsicfarki  = 0.2;
+		}
+
+		
 		return (reftestsicfarki / bolen)+"#" +(duyarlilikkatsayisi)+"#"+(duyarlilikkatsayisi*reftestsicfarki/bolen);
 }
 
-	public static String REFSIC(double bolen,double calismaaraligi,double isilkatsayi,boolean dk) throws ClassNotFoundException, SQLException {
+	public static String ORTBLKUZAMA(String obhcode,double bolen,double calismaaraligi,double isilkatsayi,double reftestsicfarki,boolean dk) throws ClassNotFoundException, SQLException {
+		
 		double duyarlilikkatsayisi=0;
+		
+	
 		if (dk== false) {
-			
+		
 		duyarlilikkatsayisi=1;
 		}
 		else {
-			duyarlilikkatsayisi=-isilkatsayi*50.0018;
+			duyarlilikkatsayisi=isilkatsayi*calismaaraligi*1000;
 		}
-		return 0.119/bolen+"#" +(duyarlilikkatsayisi)+"#"+(duyarlilikkatsayisi*0.119/bolen);
+		
+	return (reftestsicfarki / bolen)+"#" +(duyarlilikkatsayisi)+"#"+(duyarlilikkatsayisi*reftestsicfarki/bolen);
 }
 
-	public static String TESTSIC(double bolen,double calismaaraligi,double isilkatsayi,boolean dk) throws ClassNotFoundException, SQLException {
+	
+	
+	public static String REFSIC(String obhcode,double bolen,double calismaaraligi,double isilkatsayi,double reftestsicfarki,boolean dk) throws ClassNotFoundException, SQLException {
 		double duyarlilikkatsayisi=0;
+		
+		if (obhcode.equals("87")) {
+			isilkatsayi=0.00000975;	
+		}
+		
 		if (dk== false) {
 			
 		duyarlilikkatsayisi=1;
 		}
 		else {
-			duyarlilikkatsayisi=-isilkatsayi*8;
+			duyarlilikkatsayisi=isilkatsayi*calismaaraligi*1000;
+		}
+		
+		if (obhcode.equals("98")) {
+			duyarlilikkatsayisi=-isilkatsayi*50.0018;		
+			reftestsicfarki  = 0.119;
+		}
+
+		if (obhcode.equals("17")) {		
+			reftestsicfarki  = reftestsicfarki*(isilkatsayi*0.1)*calismaaraligi*1000;
+		}
+		
+		if (obhcode.equals("87")) {		
+			reftestsicfarki  = reftestsicfarki/2;
+		}
+
+	
+		return reftestsicfarki/bolen+"#" +(duyarlilikkatsayisi)+"#"+(duyarlilikkatsayisi*reftestsicfarki/bolen);
+}
+
+	public static String TESTSIC(String obhcode,double bolen,double calismaaraligi,double isilkatsayi,double reftestsicfarki,boolean dk) throws ClassNotFoundException, SQLException {
+		double duyarlilikkatsayisi=0;
+		
+		if (obhcode.equals("87")) {
+			isilkatsayi=0.00000975;	
+		}
+		
+		if (dk== false) {
+			
+		duyarlilikkatsayisi=1;
+		}
+		else {
+			duyarlilikkatsayisi=isilkatsayi*calismaaraligi*1000;
+			
 		}
 	
-		return 0.119/bolen+"#" +(duyarlilikkatsayisi)+"#"+(duyarlilikkatsayisi*0.119/bolen);
+	if (obhcode.equals("98")) {
+		duyarlilikkatsayisi=-isilkatsayi*8;
+		reftestsicfarki = 0.119;
+	}
+
+	if (obhcode.equals("17")) {		
+		reftestsicfarki  = reftestsicfarki*(isilkatsayi*0.1)*calismaaraligi*1000;
+	}
+
+	if (obhcode.equals("87")) {		
+		reftestsicfarki  = reftestsicfarki/2;
+	}
+		
+		return reftestsicfarki/bolen+"#" +(duyarlilikkatsayisi)+"#"+(duyarlilikkatsayisi*reftestsicfarki/bolen);
 }
 	
 	
-	public static String TESTISILGEN(double bolen,double calismaaraligi,double isilkatsayi,boolean dk) throws ClassNotFoundException, SQLException {
+	public static String TESTISILGEN(String obhcode,double bolen,double calismaaraligi,double isilkatsayi,boolean dk) throws ClassNotFoundException, SQLException {
 		double duyarlilikkatsayisi=0;
 		if (dk== false) {
 			
@@ -198,12 +329,28 @@ System.out.println(genisHesap("1", "98"));
 		else {
 			duyarlilikkatsayisi=-1*8;
 		}
-	
-		return 0.000001/bolen+"#" +(duyarlilikkatsayisi)+"#"+(duyarlilikkatsayisi*0.000001/bolen);
+		
+		if (obhcode.equals("1")) {		
+			duyarlilikkatsayisi  = calismaaraligi*1000*0.2;
+		}
+		
+		
+
+		if (obhcode.equals("1")) {		
+			System.out.println(isilkatsayi);
+			isilkatsayi = isilkatsayi*0.2;
+		}
+		else {
+			isilkatsayi = 0.000001;
+		}
+
+		
+		
+		return isilkatsayi/bolen+"#" +(duyarlilikkatsayisi)+"#"+(duyarlilikkatsayisi*isilkatsayi/bolen);
 }
 
 
-	public static String REFISILGEN(double bolen,double calismaaraligi,double isilkatsayi,boolean dk) throws ClassNotFoundException, SQLException {
+	public static String REFISILGEN(String obhcode,double bolen,double calismaaraligi,double isilkatsayi,boolean dk) throws ClassNotFoundException, SQLException {
 		double duyarlilikkatsayisi=0;
 		if (dk== false) {
 			
@@ -216,7 +363,7 @@ System.out.println(genisHesap("1", "98"));
 		return 0.000001/bolen+"#" +(duyarlilikkatsayisi)+"#"+(duyarlilikkatsayisi*0.000001/bolen);
 }
 	
-	public static String TESTOLCISILFARK(double bolen,double calismaaraligi,double isilkatsayi,boolean dk) throws ClassNotFoundException, SQLException {
+	public static String TESTOLCISILFARK(String obhcode,double bolen,double calismaaraligi,double isilkatsayi,boolean dk) throws ClassNotFoundException, SQLException {
 		double duyarlilikkatsayisi=0;
 		if (dk== false) {
 			
@@ -227,14 +374,13 @@ System.out.println(genisHesap("1", "98"));
 
 		}
 		calismaaraligi=0.0000055/bolen;
-		System.out.println(calismaaraligi+"-------");
 
 		return 0.0000055/bolen+"#" +(duyarlilikkatsayisi)+"#"+(duyarlilikkatsayisi*0.0000055/bolen);
 }
 	
 	
 
-	public static String MEKANIKETKI(double bolen,double cozunurluk,boolean dk) throws ClassNotFoundException, SQLException {
+	public static String MEKANIKETKI(String obhcode,double bolen,double cozunurluk,boolean dk) throws ClassNotFoundException, SQLException {
 		double duyarlilikkatsayisi=0;
 		if (dk== false) {
 			
@@ -243,7 +389,6 @@ System.out.println(genisHesap("1", "98"));
 		else {
 			duyarlilikkatsayisi=1;
 		}
-;
 		return 0.0004*1000/bolen+"#" +(duyarlilikkatsayisi)+"#"+(duyarlilikkatsayisi*(0.0004*1000/bolen));
 }
 	  
@@ -280,6 +425,7 @@ System.out.println(genisHesap("1", "98"));
 		String ckodu = "";
 		String kaldate = "";
 		double calismaaraligi = 0;
+		double refolcrange = 0;
 		double cozunurluk = 0;
 		double isilkatsayi = 0;
 		double meauncer = 0;
@@ -328,12 +474,13 @@ System.out.println(genisHesap("1", "98"));
 				ckodu ="";
 			}
 			if (!ckodu.equals("")) {
-			ekc_return = ekcDenGetir(ckodu, kaldate,obhtype,obhcode);
+			ekc_return = ekcDenGetir(ckodu, kaldate,obhtype,obhcode,calismaaraligi);
 			System.out.println(ekc_return);
 			meauncer = Double.parseDouble(ekc_return.split("#")[0]);
 			differ = Double.parseDouble(ekc_return.split("#")[1]);
 			drift = Double.parseDouble(ekc_return.split("#")[2]);
 			referanscoz = Double.parseDouble(ekc_return.split("#")[3]);
+			refolcrange = Double.parseDouble(ekc_return.split("#")[4]);
 			}
 			
 		
@@ -345,14 +492,23 @@ System.out.println(genisHesap("1", "98"));
 			
 		if(rs.getString("RCODE").equals("UREF")) {
 			
-			String tmpuref=UREF(rs.getDouble("BOLEN"), meauncer,duykat);
+			String tmpuref=UREF(obhcode,rs.getDouble("BOLEN"), meauncer,duykat);
 			nesne.setUREF(nesne.getUREF()+"]"+tmpuref);
 			toplam += Math.pow(Double.parseDouble(tmpuref.split("#")[2]), 2);
 		}
 
+		if(rs.getString("RCODE").equals("DUZLEMSELLIK")) {
+			
+			String tmpuref=DUZLEMSELLIK(obhcode,rs.getDouble("BOLEN"), meauncer,duykat);
+			nesne.setDUZLEMSELLIK(nesne.getDUZLEMSELLIK()+"]"+tmpuref);
+			toplam += Math.pow(Double.parseDouble(tmpuref.split("#")[2]), 2);
+		}
+
+		
+		
 		if(rs.getString("RCODE").equals("OLCKAL")) {
 			
-			String tmpuref=OLCKAL(rs.getDouble("BOLEN"), meauncer,duykat);
+			String tmpuref=OLCKAL(obhcode,rs.getDouble("BOLEN"), meauncer,duykat);
 			nesne.setOLCKAL(nesne.getOLCKAL()+"]"+tmpuref);
 			toplam += Math.pow(Double.parseDouble(tmpuref.split("#")[2]), 2);
 		}
@@ -360,69 +516,73 @@ System.out.println(genisHesap("1", "98"));
 		
 		
 		if(rs.getString("RCODE").equals("REFYUZEY")) {
-			nesne.setREFYUZEY(REFYUZEY(rs.getDouble("BOLEN"), meauncer,duykat));
+			nesne.setREFYUZEY(REFYUZEY(obhcode,rs.getDouble("BOLEN"), meauncer,duykat));
 			toplam += Math.pow(Double.parseDouble(nesne.REFYUZEY.split("#")[2]), 2);
 		}
 		
 		if(rs.getString("RCODE").equals("TESTCOZ")) {
-			nesne.setTESTCOZ(TESTCOZ(rs.getDouble("BOLEN"), cozunurluk,duykat));
+			nesne.setTESTCOZ(TESTCOZ(obhcode,rs.getDouble("BOLEN"), cozunurluk,duykat));
 			toplam += Math.pow(Double.parseDouble(nesne.TESTCOZ.split("#")[2]), 2);
 		}
 		if(rs.getString("RCODE").equals("REFCOZ")) {
-			nesne.setREFCOZ(REFCOZ(rs.getDouble("BOLEN"), referanscoz,duykat));
+			nesne.setREFCOZ(REFCOZ(obhcode,rs.getDouble("BOLEN"), referanscoz,duykat));
 			toplam += Math.pow(Double.parseDouble(nesne.REFCOZ.split("#")[2]), 2);
 		}
 
-		
 		if(rs.getString("RCODE").equals("OLCHATA")) {
-			nesne.setOLCHATA(OLCHATA(rs.getDouble("BOLEN"), differ,duykat));
+			nesne.setOLCHATA(OLCHATA(obhcode,rs.getDouble("BOLEN"), differ,duykat));
 			toplam += Math.pow(Double.parseDouble(nesne.OLCHATA.split("#")[2]), 2);
 		}
 		if(rs.getString("RCODE").equals("BIRLESHATA")) {
-			nesne.setBIRLESHATA(BIRLESHATA(rs.getDouble("BOLEN"), 0,duykat));
+			nesne.setBIRLESHATA(BIRLESHATA(refolcrange,calismaaraligi,obhcode,rs.getDouble("BOLEN"), 0,duykat));
 			toplam += Math.pow(Double.parseDouble(nesne.BIRLESHATA.split("#")[2]), 2);
 		}
 		if(rs.getString("RCODE").equals("REFKAYMA")) {
-			nesne.setREFKAYMA(REFKAYMA(rs.getDouble("BOLEN"), drift,duykat));
+			nesne.setREFKAYMA(REFKAYMA(obhcode,rs.getDouble("BOLEN"), drift,duykat));
 			toplam += Math.pow(Double.parseDouble(nesne.REFKAYMA.split("#")[2]), 2);
 		}
 		if(rs.getString("RCODE").equals("TEKRAR")) {
-			nesne.setTEKRAR(TEKRAR(rs.getDouble("BOLEN"), std_sapma,duykat));
+			nesne.setTEKRAR(TEKRAR(obhcode,rs.getDouble("BOLEN"), std_sapma,duykat));
 			toplam += Math.pow(Double.parseDouble(nesne.TEKRAR.split("#")[2]), 2);
 		}
 		if(rs.getString("RCODE").equals("TESTISILGEN")) {
-			nesne.setTESTISILGEN(TESTISILGEN(rs.getDouble("BOLEN"), calismaaraligi,isilkatsayi,duykat));
+			nesne.setTESTISILGEN(TESTISILGEN(obhcode,rs.getDouble("BOLEN"), calismaaraligi,isilkatsayi,duykat));
 			toplam += Math.pow(Double.parseDouble(nesne.TESTISILGEN.split("#")[2]), 2);
 		}
 		if(rs.getString("RCODE").equals("SICFARKI")) {
-			nesne.setSICFARKI(SICFARKI(rs.getDouble("BOLEN"), calismaaraligi,isilkatsayi,reftestsicfarki,duykat));
+			nesne.setSICFARKI(SICFARKI(obhcode,rs.getDouble("BOLEN"), calismaaraligi,isilkatsayi,reftestsicfarki,duykat));
 			toplam += Math.pow(Double.parseDouble(nesne.SICFARKI.split("#")[2]), 2);
 		}
 
+		if(rs.getString("RCODE").equals("ORTBLKUZAMA")) {
+			nesne.setORTBLKUZAMA(ORTBLKUZAMA(obhcode,rs.getDouble("BOLEN"), calismaaraligi,isilkatsayi,reftestsicfarki,duykat));
+			toplam += Math.pow(Double.parseDouble(nesne.ORTBLKUZAMA.split("#")[2]), 2);
+		}
+		
 		
 		if(rs.getString("RCODE").equals("REFSIC")) {
-			nesne.setREFSIC(REFSIC(rs.getDouble("BOLEN"), calismaaraligi,isilkatsayi,duykat));
+			nesne.setREFSIC(REFSIC(obhcode,rs.getDouble("BOLEN"), calismaaraligi,isilkatsayi,reftestsicfarki,duykat));
 			toplam += Math.pow(Double.parseDouble(nesne.REFSIC.split("#")[2]), 2);
-		}
+	}
 
 		if(rs.getString("RCODE").equals("TESTSIC")) {
-			nesne.setTESTSIC(TESTSIC(rs.getDouble("BOLEN"), calismaaraligi,isilkatsayi,duykat));
+			nesne.setTESTSIC(TESTSIC(obhcode,rs.getDouble("BOLEN"), calismaaraligi,isilkatsayi,reftestsicfarki,duykat));
 			toplam += Math.pow(Double.parseDouble(nesne.TESTSIC.split("#")[2]), 2);
 		}
 		
 		if(rs.getString("RCODE").equals("TESTOLCISILFARK")) {
-			nesne.setTESTOLCISILFARK(TESTOLCISILFARK(rs.getDouble("BOLEN"), calismaaraligi,isilkatsayi,duykat));
+			nesne.setTESTOLCISILFARK(TESTOLCISILFARK(obhcode,rs.getDouble("BOLEN"), calismaaraligi,isilkatsayi,duykat));
 			toplam += Math.pow(Double.parseDouble(nesne.TESTOLCISILFARK.split("#")[2]), 2);
 		}
 
 		
 		
 		if(rs.getString("RCODE").equals("REFISILGEN")) {
-			nesne.setREFISILGEN(REFISILGEN(rs.getDouble("BOLEN"), calismaaraligi,isilkatsayi,duykat));
+			nesne.setREFISILGEN(REFISILGEN(obhcode,rs.getDouble("BOLEN"), calismaaraligi,isilkatsayi,duykat));
 			toplam += Math.pow(Double.parseDouble(nesne.REFISILGEN.split("#")[2]), 2);
 		}
 		if(rs.getString("RCODE").equals("MEKANIKETKI")) {
-			nesne.setMEKANIKETKI(MEKANIKETKI(rs.getDouble("BOLEN"), cozunurluk,duykat));
+			nesne.setMEKANIKETKI(MEKANIKETKI(obhcode,rs.getDouble("BOLEN"), cozunurluk,duykat));
 			toplam += Math.pow(Double.parseDouble(nesne.MEKANIKETKI.split("#")[2]), 2);
 		}
 		
@@ -514,10 +674,7 @@ System.out.println(genisHesap("1", "98"));
 			
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-
-
 					bolen =  rs.getDouble("BOLEN");
-	
 			}
 			con.close();
 			
@@ -633,9 +790,7 @@ return bolen;
 		
 		
 		double r = 0;
-		double n = arr_x.size();
-		
-		
+		double n = arr_x.size();		
 		double topX = 0;
 		double topY = 0;
 		double topX2 = 0;
@@ -715,18 +870,15 @@ return bolen;
 		}
 		return v;
 	}
-	public static String ekcDenGetir(String ekc,String caldate,String obhtype,String obhcode) throws ClassNotFoundException, SQLException {
-	
-		
+	public static String ekcDenGetir(String ekc,String caldate,String obhtype,String obhcode,double calismaaraligi) throws ClassNotFoundException, SQLException {
 		
 		String sertifikano = "";
 		String kaldate = "";
 		double obh = 0;
 		double refcoz = 0;
 		double olcumhata = 0;
+		double refolcrange = 0;
 		double drift = 0;
-		
-		
 		
 		Connection con = null;
 		
@@ -747,14 +899,23 @@ return bolen;
 		}
 		
 		if (obhcode.equals("98") && ekc.equals("EKC-05")) {
-			
-			query = "select * from EGMREFT001 where COMPANY = '02' and CKODU = '"+ekc+"' and PARAMETRE = 'Çap' and CERTIFICATE = '"+sertifikano+"' and CALDATE = '"+kaldate+"' ";
-					
+			query = "select * from EGMREFT001 where COMPANY = '02' and CKODU = '"+ekc+"' and PARAMETRE = 'Çap'  and CERTIFICATE = '"+sertifikano+"' and CALDATE = '"+kaldate+"' ";					
 		}
 		else
 		{
+			if (obhcode.equals("87") && ekc.equals("EKC-369")) {
+				query = "select * from EGMREFT001 where COMPANY = '02' and CKODU = '"+ekc+"' and PARAMETRE LIKE '%Uzunluk%'  and NOMINAL <= "+calismaaraligi+"  and CERTIFICATE = '"+sertifikano+"' and CALDATE = '"+kaldate+"' ORDER BY NOMINAL ";					
+		}
+			else
+			{
+		if (obhcode.equals("2") && ekc.equals("EKC-17")) {
+				query = "select * from EGMREFT001 where COMPANY = '02' and CKODU = '"+ekc+"' and PARAMETRE LIKE '%Paralellik%'  and CERTIFICATE = '"+sertifikano+"' and CALDATE = '"+kaldate+"' ORDER BY NOMINAL ";					
+		}		else
+		{
 		query = "select * from EGMREFT001 where COMPANY = '02' and CKODU = '"+ekc+"' and CERTIFICATE = '"+sertifikano+"' and CALDATE = '"+kaldate+"' ";
-		}		
+		}
+		}
+		}
 		System.out.println("SORGU:"+query);
 
 		rs=st.executeQuery(query);
@@ -764,10 +925,11 @@ return bolen;
 			olcumhata = rs.getDouble("DIFFER");
 			drift = rs.getDouble("DRIFT");
 			refcoz = rs.getDouble("REFCOZ");
-			System.out.println("CKODU :"+ekc+" BELÝRSÝZLÝK:"+obh);
+			refolcrange = rs.getDouble("OLCRANGE");
+			System.out.println("CKODU :"+ekc+" MEAUNCER:"+obh);
 		}
 		con.close();
-		return obh+"#"+olcumhata+"#"+drift+"#"+refcoz;
+		return obh+"#"+olcumhata+"#"+drift+"#"+refcoz+"#"+refolcrange;
 	}
 	public static String dogrusalRegresyon(String X,String Y) {
 		

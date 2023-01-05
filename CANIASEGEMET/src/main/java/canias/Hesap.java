@@ -17,7 +17,7 @@ public class Hesap {
 	
 
 	  
-System.out.println(genisHesap("1", "1"));
+System.out.println(genisHesap("1", "3"));
 	  
 //	 System.out.println( dogrusalRegresyon("100#150#200#250#300", "8#12#14#15#16"));
 //	 System.out.println( dogrusalRegresyon("2#12#5#10#0", "30#65#50#80#10"));
@@ -48,7 +48,24 @@ System.out.println(genisHesap("1", "1"));
 		else {
 			duyarlilikkatsayisi=1;
 		}
-		
+		obh = 0.07;
+	
+
+		return obh/bolen+"#"+duyarlilikkatsayisi+"#"+(obh/bolen)*duyarlilikkatsayisi;
+	}
+
+	public static String PARALELLIK(String obhcode,double bolen,double obh,boolean dk) throws ClassNotFoundException, SQLException {
+		double duyarlilikkatsayisi=0;
+		if (dk== false) {
+			
+		duyarlilikkatsayisi=1;
+		}
+		else {
+			duyarlilikkatsayisi=1;
+		}
+		obh = 0.059;
+		System.out.println("-------"+obh);
+
 		return obh/bolen+"#"+duyarlilikkatsayisi+"#"+(obh/bolen)*duyarlilikkatsayisi;
 	}
 
@@ -95,7 +112,16 @@ System.out.println(genisHesap("1", "1"));
 		if (obhcode.equals("24")) {
 			cozunurluk = cozunurluk*1 ;
 		}
-				else {
+		if (obhcode.equals("2")) {
+			cozunurluk = 0.3 ;
+			bolen = 3.46410161513775 ;
+		}
+		if (obhcode.equals("3")) {
+			cozunurluk = 0.3 ;
+			bolen = 3.46410161513775 ;
+		}
+
+		else {
 			cozunurluk = cozunurluk *1000;
 		}
 		
@@ -211,7 +237,7 @@ System.out.println(genisHesap("1", "1"));
 			isilkatsayi=0.00000975;	
 		}
 		
-		System.out.println(isilkatsayi);
+		
 		if (dk== false) {
 		
 		duyarlilikkatsayisi=1;
@@ -345,7 +371,6 @@ System.out.println(genisHesap("1", "1"));
 		}
 
 		
-		
 		return isilkatsayi/bolen+"#" +(duyarlilikkatsayisi)+"#"+(duyarlilikkatsayisi*isilkatsayi/bolen);
 }
 
@@ -392,7 +417,7 @@ System.out.println(genisHesap("1", "1"));
 		return 0.0004*1000/bolen+"#" +(duyarlilikkatsayisi)+"#"+(duyarlilikkatsayisi*(0.0004*1000/bolen));
 }
 	  
-		public static double TVARYANS(String degerler) throws ClassNotFoundException, SQLException {
+	public static double TVARYANS(String degerler) throws ClassNotFoundException, SQLException {
 		
 		double toplam=0;
 		String[] arr_varyans=degerler.split("#");
@@ -504,6 +529,12 @@ System.out.println(genisHesap("1", "1"));
 			toplam += Math.pow(Double.parseDouble(tmpuref.split("#")[2]), 2);
 		}
 
+		if(rs.getString("RCODE").equals("PARALELLIK")) {
+			
+			String tmpuref=PARALELLIK(obhcode,rs.getDouble("BOLEN"), meauncer,duykat);
+			nesne.setPARALELLIK(nesne.getPARALELLIK()+"]"+tmpuref);
+			toplam += Math.pow(Double.parseDouble(tmpuref.split("#")[2]), 2);
+		}
 		
 		
 		if(rs.getString("RCODE").equals("OLCKAL")) {
@@ -908,6 +939,9 @@ return bolen;
 		}
 			else
 			{
+				if (obhcode.equals("3") && ekc.equals("EKC-17")) {
+					query = "select * from EGMREFT001 where COMPANY = '02' and CKODU = '"+ekc+"' and PARAMETRE LIKE '%Paralellik%'  and CERTIFICATE = '"+sertifikano+"' and CALDATE = '"+kaldate+"' ORDER BY NOMINAL ";					
+			}		else
 		if (obhcode.equals("2") && ekc.equals("EKC-17")) {
 				query = "select * from EGMREFT001 where COMPANY = '02' and CKODU = '"+ekc+"' and PARAMETRE LIKE '%Paralellik%'  and CERTIFICATE = '"+sertifikano+"' and CALDATE = '"+kaldate+"' ORDER BY NOMINAL ";					
 		}		else

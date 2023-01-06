@@ -659,7 +659,7 @@ System.out.println(genisHesap("1", "3"));
 //						hata = true;
 //					}
 //					else {
-////					func = (double) arr_method[m].invoke(hnesne, rs.getDouble("BOLEN"));
+//					func = (double) arr_method[m].invoke(hnesne, rs.getDouble("BOLEN"));
 //					System.out.println("Func:"+func);
 //					nesne.HATAMESAJI = "HATA#Fonksiyon Bulunamadý:"+arr_method[m].getName().;
 //					
